@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <title>Room Rent</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="icon" href="images/logo_title.png"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="intro">
+      <hgroup>
+          <h1><img src="images/logo.png" alt="logo"></h1>
+          <h2>your dreams in a few clicks...</h2>
+      </hgroup>
+
+      <div id="nav">
+          <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="listar.html">Listar</a></li>
+          <li><a href="anuncios.html">Anúncios</a></li>
+          <li><a href="procurar.html">Procurar</a></li>
+          <li><a href="admin.html">Administração</a></li>
+          </ul>
+      </div>
+    </div>
+
+    <h2 id="titulo_a">Anúncios Ativos</h2>
+    <div id="results_a"></div>
+
+    <div id="button_back_next_a">
+      <div id="icon1_a"></div>
+      <div id="icon2_a"></div>
+    </div>
+
+    <h2 id="titulo_i">Anúncios Inativos</h2>
+    <div id="results_i"></div>
+
+    <div id="button_back_next_i">
+      <div id="icon1_i"></div>
+      <div id="icon2_i"></div>
+    </div>
+
+    <form id="alterar_estado" action="http://alunos.di.uevora.pt/tweb/t1/controloanuncio" method="post">
+      <h2>Mudar Estado</h2>
+      <label for="aid">Insira o número do anúncio: </label>
+      <input type="text" id="aid" name="aid"><br>
+      <label for="estado">Alterar para: </label>
+      <input type="radio" name="estado" id="ativo" value="ativo"> Ativo
+      <input type="radio" name="estado" id="inativo" value="inativo"> Inativo<br>
+      <label id="Des_alterar_estado" for="estado">Descrição: </label>
+      <textarea id="text_estado_alterado" name="descricao" cols="40" rows="2"></textarea><br>
+      <input type="Submit" id="submit_alterar" value="Alterar Estado">
+    </form>
+    
+
+    <div id="rod">
+      <div id="authors">
+          <p>Diogo Carreiro nº48729 & Rodrigo Alves nº48681</p>
+      </div>
+
+      <div id="sponsors">
+          <p>Patrocinadores:</p>
+          <a target="_blank" href="https://www.uevora.pt/">
+              <img id="ue" alt="universidade_evora" src="images/ue.png">
+          </a>
+          <a target="_blank" href="https://www.mercedes-benz.pt/">
+              <img id="mercedes" alt="mercedes" src="images/mercedes.png">
+          </a>
+          <a target="_blank" href="https://www.creditoagricola.pt/">
+              <img id="ca" alt="credito_agricola" src="images/ca.png">
+          </a>
+          <a target="_blank" href="https://www.redbull.com/pt-pt/">
+              <img id="redbull" alt="redbull" src="images/redbull.png">
+          </a>
+      </div>
+
+      <div id="social_networks">
+          <p>Redes Socias:</p>
+          <a target="_blank" href="https://www.facebook.com/">
+              <img id="facebook" alt="facebook" src="images/facebook.png">
+          </a>
+          <a target="_blank" href="https://twitter.com/?lang=pt">
+              <img id="twitter" alt="twitter" src="images/twitter.png">
+          </a>
+          <a target="_blank" href="https://pt.linkedin.com/">
+              <img id="linkedIn" alt="linkedIn" src="images/linkedIn.png">
+          </a>
+          <a target="_blank" href="https://www.instagram.com/">
+              <img id="instagram" alt="instagram" src="images/instagram.png">
+          </a>
+      </div>
+    </div>
+  </body>
+  <script>
+  
+    var current_page=0, end, pagination=4;
+
+    //Anúncios Ativos
+    
+    function button_back_ativos(data, page_number, limit) {
+      if (page_number==end) {
+          document.getElementById("icon2_a").innerHTML="";
+      }
+      document.getElementById("icon1_a").innerHTML="";
+      let btn = document.createElement("button");
+      btn.innerHTML = "Back";
+      btn.onclick = function () {
+          if (page_number>1) {
+          current_page=page_number-1;
+          list_anuncios_ativos(data,current_page,limit);
+          }
+      };
+      document.getElementById("icon1_a").appendChild(btn);
+    }
+
+    function button_next_ativos(data,page_number,limit) {
+      if (page_number==1) {
+          document.getElementById("icon1_a").innerHTML="";
+      }
+      document.getElementById("icon2_a").innerHTML="";
+      let btn = document.createElement("button");
+      btn.innerHTML = "Next";
+      btn.onclick = function () {
+          if (page_number<=end) {
+          current_page=page_number+1;
+          list_anuncios_ativos(data,current_page,limit);
+          }
+      };
+      document.getElementById("icon2_a").appendChild(btn);
+    }
+
+    function list_anuncios_ativos(data, page_number, limit) {
+        document.getElementById("results_a").innerHTML="";
+
+        let total = data.ativo.length;
+
+        let total_number_pages = Math.ceil(total/limit);
+        end=total_number_pages;
+        let count = (page_number*limit)-limit;
+        let last = count+limit;
+
+        if (total==0) {
+          document.getElementById("results_i").innerHTML+= "Não há anúncios ativos<br>";
+        }
+        
+        for (let i = count; i < last; i++) {
+            var aid_anuncio = data.ativo[i];
+        
+            if (i<total) {
+              document.getElementById("results_a").innerHTML+= "ID: " + aid_anuncio + "<br>";  
+            }
+        }
+    
+        if (page_number==end && page_number==1) {
+            document.getElementById("icon1_a").innerHTML="";
+            document.getElementById("icon2_a").innerHTML="";
+        }
+        else if (page_number==end && total!=0) {
+            button_back_ativos(data, page_number, pagination);
+        }
+        else if (page_number==1 && total!=0) {
+            button_next_ativos(data, page_number, pagination);
+        }
+        else{
+          if (total!=0) {
+            button_back_ativos(data, page_number, pagination);
+            button_next_ativos(data, page_number, pagination);
+          } 
+        } 
+    }
+
+
+    //Anúncios Inativos
+
+    function button_back_inativos(data, page_number, limit) {
+      if (page_number==end) {
+          document.getElementById("icon2_i").innerHTML="";
+      }
+      document.getElementById("icon1_i").innerHTML="";
+      let btn = document.createElement("button");
+      btn.innerHTML = "Back";
+      btn.onclick = function () {
+          if (page_number>1) {
+          current_page=page_number-1;
+          list_anuncios_inativos(data,current_page,limit);
+          }
+      };
+      document.getElementById("icon1_i").appendChild(btn);
+    }
+
+    function button_next_inativos(data,page_number,limit) {
+      if (page_number==1) {
+          document.getElementById("icon1_i").innerHTML="";
+      }
+      document.getElementById("icon2_i").innerHTML="";
+      let btn = document.createElement("button");
+      btn.innerHTML = "Next";
+      btn.onclick = function () {
+          if (page_number<=end) {
+          current_page=page_number+1;
+          list_anuncios_inativos(data,current_page,limit);
+          }
+      };
+      document.getElementById("icon2_i").appendChild(btn);
+    }
+
+
+    function list_anuncios_inativos(data, page_number, limit) {
+        document.getElementById("results_i").innerHTML="";
+
+        let total = data.inativo.length;
+
+        let total_number_pages = Math.ceil(total/limit);
+        end=total_number_pages;
+        let count = (page_number*limit)-limit;
+        let last = count+limit;
+        if (total==0) {
+          document.getElementById("results_i").innerHTML+= "Não há anúncios inativos<br>";
+        }
+        for (let i = count; i < last; i++) {
+            var aid_anuncio = data.inativo[i];
+        
+            if (i<total) {
+              document.getElementById("results_i").innerHTML+= "ID: " + aid_anuncio + "<br>";    
+            }
+        }
+    
+        if (page_number==end && page_number==1) {
+            document.getElementById("icon1").innerHTML="";
+            document.getElementById("icon2").innerHTML="";
+        }
+        else if (page_number==end && total!=0) {
+            button_back_inativos(data, page_number, pagination);
+        }
+        else if (page_number==1 && total!=0) {
+            button_next_inativos(data, page_number, pagination);
+        }
+        else{
+            if (total!=0) {
+              button_back_inativos(data, page_number, pagination);
+              button_next_inativos(data, page_number, pagination);
+            }
+            
+        } 
+    }
+
+    //Verificar mudança de estado
+
+    function verify_state() {
+      var aid = document.getElementById("aid").value;
+      var ativo = document.getElementById("ativo");
+      var inativo = document.getElementById("inativo");
+      var descricao = document.getElementById("text_estado_alterado").value;
+    
+      if (aid.length<1) {
+        alert("Atributo aid em falta!");
+        return false;
+      }
+
+      if (!ativo.checked && !inativo.checked) {
+        alert("Atributo estado em falta!");
+        return false;
+      }
+
+      if (descricao.length<1) {
+        alert("Atributo descricao em falta!");
+        return false;
+      }
+      return true;
+    }
+
+    $(document).ready(function(){  
+      $.post("http://alunos.di.uevora.pt/tweb/t1/gereanuncios",function(data){
+          current_page=1;
+          list_anuncios_ativos(data,current_page,pagination);   
+          list_anuncios_inativos(data,current_page,pagination);
+        });
+
+        $("#alterar_estado").on("submit", function(event) {
+            event.preventDefault();
+            var formValues= $(this).serialize();
+            if (verify_state()) {
+                $.post("http://alunos.di.uevora.pt/tweb/t1/controloanuncio",formValues, function (data) {
+                    alert("Estado do Anúncio alterado com sucesso");
+                });
+            }  
+        }); 
+    });
+  </script>
+</html>

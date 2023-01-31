@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Room Rent</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="icon" href="images/logo_title.png"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="intro">
+      <hgroup>
+          <h1><img src="images/logo.png" alt="logo"></h1>
+          <h2>your dreams in a few clicks...</h2>
+      </hgroup>
+
+      <div id="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="listar.html">Listar</a></li>
+            <li><a href="anuncios.html">Anúncios</a></li>
+            <li><a href="procurar.html">Procurar</a></li>
+            <li><a href="admin.html">Administração</a></li>
+          </ul>
+      </div>
+    </div>
+
+    <div id="procurar_detalhes">
+      <form id="form1" action="http://alunos.di.uevora.pt/tweb/t1/anuncio" method="post">
+        <p>
+          <b>Número do Anúncio:</b>
+          <input id="aid" type="text" name="aid" placeholder="Coloque o ID do Anúncio...">
+          <input type="submit" value="Procurar">
+        </p>
+      </form>
+    </div>
+   
+    <div id="photo_details"></div>
+    <div id="res"></div>
+    <div id="write"></div>
+    <div id="mensages"></div>
+    
+    
+    <div id="rod">
+      <div id="authors">
+          <p>Diogo Carreiro nº48729 & Rodrigo Alves nº48681</p>
+      </div>
+
+      <div id="sponsors">
+          <p>Patrocinadores:</p>
+          <a target="_blank" href="https://www.uevora.pt/">
+              <img id="ue" alt="universidade_evora" src="images/ue.png">
+          </a>
+          <a target="_blank" href="https://www.mercedes-benz.pt/">
+              <img id="mercedes" alt="mercedes" src="images/mercedes.png">
+          </a>
+          <a target="_blank" href="https://www.creditoagricola.pt/">
+              <img id="ca" alt="credito_agricola" src="images/ca.png">
+          </a>
+          <a target="_blank" href="https://www.redbull.com/pt-pt/">
+              <img id="redbull" alt="redbull" src="images/redbull.png">
+          </a>
+      </div>
+
+      
+
+      <div id="social_networks">
+          <p>Redes Socias:</p>
+          <a target="_blank" href="https://www.facebook.com/">
+              <img id="facebook" alt="facebook" src="images/facebook.png">
+          </a>
+          <a target="_blank" href="https://twitter.com/?lang=pt">
+              <img id="twitter" alt="twitter" src="images/twitter.png">
+          </a>
+          <a target="_blank" href="https://pt.linkedin.com/">
+              <img id="linkedIn" alt="linkedIn" src="images/linkedIn.png">
+          </a>
+          <a target="_blank" href="https://www.instagram.com/">
+              <img id="instagram" alt="instagram" src="images/instagram.png">
+          </a>
+      </div>
+    </div>
+    <script>
+
+      var photo = new Image(843,500);
+
+      window.onload = function () {
+        document.getElementById("aid").focus();
+      }
+
+      $(document).ready(function () {
+        $("#form1").on("submit", function(event) {
+          event.preventDefault();
+          
+          var formValues= $(this).serialize();
+          var actionUrl = $(this).attr("action");
+
+          document.getElementById("res").innerHTML="";
+          document.getElementById("photo_details").innerHTML="";
+          document.getElementById("mensages").innerHTML="";
+          document.getElementById("write").innerHTML="";
+          
+          $.post(actionUrl, formValues, function (data){
+            let element = document.createElement("div");
+            element.id="anuncio_detalhado";
+
+            let element2 = document.createElement("div");
+            element2.id="details";
+
+            let element3 = document.createElement("div");
+            element3.id="all_mensages";
+
+            let element4 = document.createElement("div");
+            element4.id="write_mensages";
+
+            document.getElementById("res").appendChild(element);
+            document.getElementById("photo_details").appendChild(element2);
+            document.getElementById("mensages").appendChild(element3);
+            document.getElementById("write").appendChild(element4);
+            
+            if (typeof data.anuncio.aid === "undefined") {
+              alert("Insira um número de um anúncio existente!");
+              document.getElementById("res").innerHTML="";
+              document.getElementById("photo_details").innerHTML="";
+              document.getElementById("mensages").innerHTML="";
+              document.getElementById("write").innerHTML="";
+            }
+            else{
+
+              if(data.anuncio.tipo_alojamento == "Casa" || data.anuncio.tipo_alojamento == "casa" || data.anuncio.tipo_alojamento == "T0" || data.anuncio.tipo_alojamento == "T1" ||
+              data.anuncio.tipo_alojamento == "T2" || data.anuncio.tipo_alojamento == "T3" || data.anuncio.tipo_alojamento == "T4" || data.anuncio.tipo_alojamento == "t0" || data.anuncio.tipo_alojamento == "t1" ||
+              data.anuncio.tipo_alojamento == "t2" || data.anuncio.tipo_alojamento == "t3" || data.anuncio.tipo_alojamento == "t4"){
+                photo.src="images/home.jpg";
+              }
+              else if (data.anuncio.tipo_alojamento === "Quarto" || data.anuncio.tipo_alojamento === "quarto"){
+                photo.src="images/bedroom.jpg";
+              }
+              else{
+                photo.src="images/undefined.jpg";
+              }
+
+              document.getElementById("anuncio_detalhado").innerHTML += "<h4>" + "<b>Anúncio </b>" + "<b>" + data.anuncio.aid + "</b>" + "<b> Detalhes </b>" + "</h4>";
+              document.getElementById("anuncio_detalhado").innerHTML += "<b>Anunciante: </b>" + data.anuncio.anunciante + "<br>";
+              document.getElementById("anuncio_detalhado").innerHTML += "<b>Contacto: </b>" + data.anuncio.contacto + "<br>";
+              document.getElementById("anuncio_detalhado").innerHTML += "<b>Anuncio publicado em: </b>" + data.anuncio.data + "<br>";
+              document.getElementById("anuncio_detalhado").innerHTML += "<b>Detalhes: </b>" + data.anuncio.detalhes + "<br>";
+              document.getElementById("anuncio_detalhado").innerHTML += "<b>Estado: </b>" + data.anuncio.estado + "<br>";
+              document.getElementById("anuncio_detalhado").innerHTML += "<b>Género: </b>" + data.anuncio.genero + "<br>";
+              document.getElementById("anuncio_detalhado").innerHTML += "<b>Preço: </b>" + data.anuncio.preco + " €" + "<br>";
+              document.getElementById("anuncio_detalhado").innerHTML += "<b>Tipo de alojamento: </b>" + data.anuncio.tipo_alojamento +  "<br>";
+              document.getElementById("anuncio_detalhado").innerHTML += "<b>Zona: </b>" + data.anuncio.zona + "<br>";
+              document.getElementById("details").appendChild(photo);
+
+              
+
+              var f = document.createElement("form");
+              f.setAttribute("action", "http://alunos.di.uevora.pt/tweb/t1/contactar");
+              f.setAttribute("method", "post");
+              f.setAttribute("id", "contactar");
+   
+              var x = document.createElement("input");
+              x.setAttribute("type","text");
+              x.setAttribute("name", "aid");
+
+              var z = document.createElement("input");
+              z.setAttribute("type","text");
+              z.setAttribute("name", "remetente");
+
+              var y = document.createElement("textarea");
+              y.setAttribute("id","caixa_T_contactar");
+              y.setAttribute("name", "msg");            
+              y.setAttribute("cols","50");
+              y.setAttribute("rows","2");
+
+              var v = document.createElement("input");
+              v.setAttribute("id","submit_contactar");
+              v.setAttribute("type","submit");
+              v.setAttribute("value", "Enviar Mensagem");
+
+              
+              
+              document.getElementById("write_mensages").innerHTML += "<h5><b>Contactar</b></h5>";
+              document.getElementById("write_mensages").appendChild(f);
+              document.getElementById("contactar").innerHTML+= "<b>Anúncio: </b>";
+              document.getElementById("contactar").appendChild(x);
+              document.getElementById("contactar").innerHTML+="<br>";
+              document.getElementById("contactar").innerHTML+= "<b>Remetente: </b>";
+              document.getElementById("contactar").appendChild(z);
+              document.getElementById("contactar").innerHTML+="<br>";
+              document.getElementById("contactar").innerHTML+= "<b id='mensagem_area'>Mensagem: </b>";
+              document.getElementById("contactar").appendChild(y);
+              document.getElementById("contactar").appendChild(v);
+            }
+          });
+
+          $.post("http://alunos.di.uevora.pt/tweb/t1/mensagens", formValues, function (data){
+              if (data.msgs.length==0) {
+                document.getElementById("all_mensages").innerHTML += "Não há mensagens enviadas para este anúncio";
+              }
+              else{
+                document.getElementById("all_mensages").innerHTML += "<h5><b>Últimas Mensagens Enviadas</b></h5>";
+                for (let i = data.msgs.length-1; i >= 0; i--) {
+                  document.getElementById("all_mensages").innerHTML += "<b>" +data.msgs[i].remetente + ":  </b>" + data.msgs[i].msg + "<br>";                  
+                }
+              }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

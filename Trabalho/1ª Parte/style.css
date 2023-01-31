@@ -1,0 +1,796 @@
+/*Style intro index.html*/
+
+#intro {
+    width: 99.5%;
+    text-align: center;
+    margin: 2em 0 1em;
+    background-color: #ebe4ad;
+    border-radius: 10px;
+    border: 7px solid #fca404;
+    position: relative;
+    bottom: 25px;
+    left: 5px;
+}
+
+#intro h1 {
+    margin-bottom: 10px;
+}
+
+#intro h2 {
+    font-weight: bold;
+    font-family: serif;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: black;
+    margin-top: -10px;
+    margin-bottom: 5px;
+}
+
+/*Style intro listar.html*/
+
+#intro_listar {
+    width: 99.5%;
+    text-align: center;
+    margin: 2em 0 1em;
+    background-color: #ebe4ad;
+    border-radius: 10px;
+    border: 7px solid #fca404;
+    position: relative;
+    bottom: 25px;
+    right: 2px;
+}
+
+#intro_listar h1 {
+    margin-bottom: 10px;
+}
+
+#intro_listar h2 {
+    font-weight: bold;
+    font-family: serif;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: black;
+    margin-top: -10px;
+    margin-bottom: 5px;
+}
+
+/*Style nav index.html & listar.html*/
+
+#nav {
+    background-color: #bb7c07;
+    overflow: hidden;
+    width: 100%;
+    border-top: 2px solid black;
+}
+
+#nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    width: 35.5em;
+}
+
+#nav ul li {
+    font-weight: normal;
+    text-transform: uppercase;
+    float: left;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#nav ul li a {
+    display: block;
+    padding: .5em;
+    border: 2px solid black;
+    border-radius: .8em;
+    margin: .3em;
+}
+
+#nav ul a:link {
+    color: black;
+}
+
+#nav ul a:visited {
+    color: black;
+}
+
+#nav ul a:focus {
+    color: #fff;
+    border-color: #fff;
+}
+
+#nav ul a:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+#nav ul a:active {
+    color: #fca404;
+}
+
+/*Style destaques index.html*/
+
+#principal_searchs {
+    width: 49%;
+    height: 630px;
+    background-color: #ebe4ad;
+    position: relative;
+    left: 5px;
+    bottom: 30px;
+    border: 5px solid black;
+    border-radius: .5em;
+    float: left;
+}
+
+#principal_offers {
+    width: 49%;
+    height: 630px;
+    background-color: #ebe4ad;
+    position: relative;
+    right: 5px;
+    bottom: 30px;
+    border: 5px solid black;
+    border-radius: .5em;
+    float: right;
+}
+
+#destaque_o,
+#destaque_s {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1.3em;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.photo_slides_offers,
+.photo_slides_searchs {
+    display: none;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    border: 5px solid #bb7c07;
+    border-radius: .5em;
+    width: 71.4%;
+    margin-left: 14%;
+}
+
+#info_img_searchs,
+#info_img_offers {
+    width: 40%;
+    height: 25%;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 30%;
+    font-size: 80%;
+    margin-top: 2%;
+    font-weight: bold;
+    background-color: #fca404;
+    border-radius: 5px;
+    border: 3px solid #bb7c07;
+    line-height: 22px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+}
+
+#more_offers,
+#more_searchs {
+    width: 16%;
+    font-size: 80%;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    position: absolute;
+    bottom: 5%;
+    left: 42.5%;
+    background-color: #fca404;
+    border-radius: 5px;
+    border: 3px solid #bb7c07;
+    text-align: center;
+
+}
+
+/*Style rodapé index.html*/
+
+#rod {
+    width: 99.5%;
+    height: 85px;
+    background-color: #bb7c07;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    position: relative;
+    bottom: 20px;
+    border: 7px solid #fca404;
+    border-radius: .5em;
+    left: 5px;
+}
+
+/*Style rodapé listar.html*/
+
+#rod_listar {
+    width: 99.4%;
+    height: 85px;
+    background-color: #bb7c07;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    position: relative;
+    bottom: 20px;
+    border: 7px solid #fca404;
+    border-radius: .5em;
+    top: 3px;
+    right: 2px;
+}
+
+#authors {
+    width: 33.3%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    margin-left: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80%;
+    font-weight: bolder;
+    color: black;
+}
+
+#sponsors {
+    width: 33.3%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80%;
+    font-weight: bolder;
+    color: black;
+}
+
+#sponsors a {
+    height: 100%;
+    margin-left: 5px;
+    align-items: center;
+    display: flex;
+}
+
+#social_networks {
+    width: 33.3%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-right: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80%;
+    font-weight: bolder;
+    color: black;
+}
+
+#social_networks a {
+    height: 100%;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#ue {
+    height: 35px;
+}
+
+#mercedes {
+    height: 42px;
+}
+
+#ca {
+    height: 35px;
+}
+
+#redbull {
+    height: 28px;
+}
+
+#facebook {
+    height: 30px;
+}
+
+#twitter {
+    height: 42px;
+}
+
+#linkedIn {
+    height: 35px;
+}
+
+#instagram {
+    height: 32px;
+}
+
+/*Slideshow index.html*/
+
+.w3-left,
+.w3-right,
+.w3-badge {
+    cursor: pointer;
+}
+
+.w3-badge {
+    height: 13px;
+    width: 13px;
+    padding: 0;
+}
+
+#photo1_searchs img,
+#photo2_searchs img,
+#photo3_searchs img,
+#photo1_offers img,
+#photo2_offers img,
+#photo3_offers img {
+    width: 100%;
+}
+
+/*Style listar.html*/
+
+h3 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    font-weight: bold;
+}
+
+#anuncio_procura {
+    width: 49%;
+    height: 380px;
+    background-color: #ebe4ad;
+    position: relative;
+    bottom: 30px;
+    border: 5px solid #fca404;
+    border-radius: .5em;
+    float: left;
+    margin-top: 15px;
+
+}
+
+#anuncio_oferta {
+    width: 49%;
+    height: 380px;
+    background-color: #ebe4ad;
+    position: relative;
+    bottom: 30px;
+    border: 5px solid #fca404;
+    border-radius: .5em;
+    float: right;
+    margin-top: 15px;
+}
+
+#anuncio_procura p {
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 10px;
+    font-size: 80%;
+}
+
+#anuncio_oferta p {
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 10px;
+    font-size: 80%;
+}
+
+#caixa_texto {
+    position: relative;
+    bottom: 35px;
+    left: 85px;
+    max-width: 80%;
+}
+
+#submeter_anuncio {
+    position: absolute;
+    left: 85%;
+    margin-top: 5%;
+}
+
+/*Style procurar.html & anuncios.html*/
+
+#pesquisa {
+    width: 40%;
+    height: 100px;
+    background-color: #ebe4ad;
+    position: relative;
+    bottom: 20px;
+    border: 5px solid #fca404;
+    border-radius: .5em;
+    margin: auto;
+}
+
+#pesquisa h3 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#pesquisa input {
+    width: 30%;
+    position: relative;
+    left: 35%;
+}
+
+#pesquisa #img_pesquisa {
+    width: 3em;
+    position: relative;
+    top: 9%;
+    left: 34%;
+}
+
+#results {
+    width: 40%;
+    height: auto;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #ebe4ad;
+    position: relative;
+    bottom: 10px;
+    border: 5px solid #fca404;
+    border-radius: .5em;
+    margin: auto;
+    text-align: center;
+    font-size: 80%;
+    line-height: 22px;
+}
+
+#button_back_next {
+    display: flex;
+    justify-content: center;
+}
+
+#titulo {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: underline;
+    margin-bottom: 3%;
+}
+
+/*Style anuncio_detalhes*/
+
+#procurar_detalhes {
+    width: 40%;
+    height: auto;
+    background-color: #ebe4ad;
+    position: relative;
+    bottom: 30px;
+    border: 5px solid #fca404;
+    border-radius: .5em;
+    margin: auto;
+    text-align: center;
+}
+
+#anuncio_detalhado {
+    width: 54%;
+    height: auto;
+    background-color: #ebe4ad;
+    border: 7px solid #fca404;
+    border-radius: .5em;
+    position: relative;
+    right: 6px;
+    float: right;
+    text-align: center;
+}
+
+#details {
+    background-color: #ebe4ad;
+    border: 7px solid #fca404;
+    border-radius: .5em;
+    position: relative;
+    left: 5px;
+    float: left;
+}
+
+#write_mensages {
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #ebe4ad;
+    border: 6px solid #fca404;
+    border-radius: .5em;
+    width: 54%;
+    height: 243px;
+    position: relative;
+    right: 6px;
+    float: right;
+    margin-top: 0.2%;
+    
+    padding-left: 2%;
+}
+
+#write h5 {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#contactar b {
+    line-height: 3em;
+}
+
+#mensagem_area {
+    position: absolute;
+}
+
+#caixa_T_contactar{
+    position: relative;
+    left: 9%;
+    margin-bottom: 1.35%;
+    max-height: 40%;
+}
+
+#submit_contactar{
+    position: absolute;
+    right: 12%;
+    bottom: 8%;
+   
+}
+
+#all_mensages {
+    background-color: #ebe4ad;
+    border: 7px solid #fca404;
+    border-radius: .5em;
+    text-align: center;
+    line-height: 2em;
+    position: relative;
+    left: 4px;
+    bottom: 5%;
+    height: auto;
+    width: 99.5%;
+    float: left;
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+/*Style admin.html*/
+
+#results_a, #results_i{
+    text-align: center;
+    background-color: #ebe4ad;
+    border: 7px solid #fca404;
+    border-radius: .5em;
+    height: auto;
+    width: 30%;
+    margin: auto;
+}
+
+#titulo_a{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-align: center;
+   
+}
+
+#titulo_i{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 3.5%;
+}
+
+#button_back_next_a, #button_back_next_i{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 35%;
+    margin-top: 1%;
+    width: 30%;
+}
+
+#alterar_estado{
+    width: 30%;
+    background-color: #ebe4ad;
+    border: 7px solid #fca404;
+    border-radius: .5em;
+    line-height: 2em;
+    margin-bottom: 2%;
+    margin-top: 3%;
+    padding-left: 0.5%;
+    position: relative;
+    left: 35%;
+    font-weight: bold;
+}
+
+#alterar_estado h2{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 3%;
+}
+
+#Des_alterar_estado{
+    position: absolute;
+}
+
+#text_estado_alterado{
+    position: relative;
+    left: 15%;
+    margin-bottom: 1.35%;
+    width: 50%;
+}
+
+#submit_alterar{
+    position: relative;
+    left: 70%;
+    margin-bottom: 3%;
+}
+
+/*Style body*/
+
+body {
+    background-color: white;
+}
+
+/*Responsive*/
+
+@media screen and (max-width: 1127px) {
+
+    /*index.html*/
+
+    #principal_offers {
+        float: none;
+        margin: 5px auto;
+        position: relative;
+        left: 0.4%;
+        height: auto;
+        width: auto;
+    }
+
+    #principal_searchs {
+        float: none;
+        margin: 5px auto;
+        height: auto;
+        width: auto;
+    }
+
+    #info_img_offers, #info_img_searchs{
+        height: auto;
+    }
+
+    #more_searchs, #more_offers{
+        position: absolute;
+        left: 72%;
+        bottom: 0.05%;
+        width: 140px;
+    }
+
+    /*Rodapé geral*/
+
+    #rod {
+        height: 200px;    
+    }
+    
+    #authors {
+        position: absolute;
+        bottom: 25%;
+        width: 360px;
+        text-align: justify;
+    }
+
+    #sponsors {
+        position: absolute;
+        top: 2%;
+        text-align: justify;
+    }
+
+    #social_networks {
+        position: absolute;
+        text-align: justify;
+        top: 30%;
+        left: 30%;
+    }
+
+    /* listar.html*/
+    
+    #rod_listar {
+        height: 200px;    
+    }
+
+    #anuncio_oferta {
+        float: none;
+        height: auto;
+        margin: 5px auto;
+    }
+
+    #anuncio_procura {
+        float: none;
+        height: auto;
+        margin: 5px auto;
+    }
+
+    #submeter_anuncio{
+        position: relative;
+        left: 5%;
+        bottom: 10px;
+    }
+
+    #caixa_texto{
+        max-width: 55%;
+    }
+}
+
+@media screen and (max-width: 1807px){
+    /*admin.html*/
+
+    #titulo_i, titulo_a{
+        margin-top: 7%;
+    }
+
+    #alterar_estado{
+        position: relative;
+        left: 25%;
+        margin-top: 7.5%;
+        margin-bottom: 10%;
+        width: 50%;
+        height: 280px;
+    }
+
+    #text_estado_alterado{
+        max-width: 50%;
+        position: absolute;
+        left: 35%;
+    }
+
+    #submit_alterar{
+        position: absolute;
+        top: 82%;
+        left: 45%;
+    }
+}
+
+@media screen and (max-width: 1807px){
+    /*anuncio_detalhes.html*/
+
+    #procurar_detalhes{
+        width: auto;
+    }
+
+    #photo_details{
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    #res{
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    #write{
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    #write_mensages{
+        height: 328px;
+    }
+
+    #mensages{
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    #caixa_T_contactar{
+        max-width: 40%;
+        position: relative;
+        top: 70%;
+        left: 35%;
+        max-height: 20%;
+    }
+
+    #submit_contactar{
+        position: relative;
+        top: 30px;
+        left: 16%;
+    }
+}

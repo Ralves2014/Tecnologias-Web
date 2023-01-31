@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+    <title>Room Rent</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="icon" href="images/logo_title.png"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+  </head>
+  <body>
+    <div id="intro_listar">
+      <hgroup>
+          <h1><img src="images/logo.png" alt="logo"></h1>
+          <h2>your dreams in a few clicks...</h2>
+      </hgroup>
+
+      <div id="nav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="listar.html">Listar</a></li>
+          <li><a href="anuncios.html">Anúncios</a></li>
+          <li><a href="procurar.html">Procurar</a></li>
+          <li><a href="admin.html">Administração</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <form action="http://alunos.di.uevora.pt/tweb/t1/roomsearch" method="post">
+      <div id="pesquisa">
+        <h3>Pesquisa:</h3>
+        <input id="pesquisar" type="search" name="tipo" placeholder="Pesquisa aqui...">
+        <input id="img_pesquisa" type="image" name="submit" src="images/pesquisa.png" alt="Submeter"> 
+      </div>
+    </form>
+
+    <div id="results"></div>
+
+    <div id="button_back_next">
+      <div id="icon1"></div>
+      <div id="icon2"></div>
+    </div>
+
+  
+    <div id="rod_listar">
+      <div id="authors">
+          <p>Diogo Carreiro nº48729 & Rodrigo Alves nº48681</p>
+      </div>
+
+      <div id="sponsors">
+          <p>Patrocinadores:</p>
+          <a target="_blank" href="https://www.uevora.pt/">
+              <img id="ue" alt="universidade_evora" src="images/ue.png">
+          </a>
+          <a target="_blank" href="https://www.mercedes-benz.pt/">
+              <img id="mercedes" alt="mercedes" src="images/mercedes.png">
+          </a>
+          <a target="_blank" href="https://www.creditoagricola.pt/">
+              <img id="ca" alt="credito_agricola" src="images/ca.png">
+          </a>
+          <a target="_blank" href="https://www.redbull.com/pt-pt/">
+              <img id="redbull" alt="redbull" src="images/redbull.png">
+          </a>
+      </div>
+
+      <div id="social_networks">
+          <p>Redes Socias:</p>
+          <a target="_blank" href="https://www.facebook.com/">
+              <img id="facebook" alt="facebook" src="images/facebook.png">
+          </a>
+          <a target="_blank" href="https://twitter.com/?lang=pt">
+              <img id="twitter" alt="twitter" src="images/twitter.png">
+          </a>
+          <a target="_blank" href="https://pt.linkedin.com/">
+              <img id="linkedIn" alt="linkedIn" src="images/linkedIn.png">
+          </a>
+          <a target="_blank" href="https://www.instagram.com/">
+              <img id="instagram" alt="instagram" src="images/instagram.png">
+          </a>
+      </div>
+  </div>
+  <script>
+
+    var current_page=0, end, pagination=4;
+   
+    window.onload = function () {
+      document.getElementById("pesquisar").focus();
+    }
+
+    function button_back(data, page_number, limit) {
+      if (page_number==end) {
+        document.getElementById("icon2").innerHTML="";
+      }
+      document.getElementById("icon1").innerHTML="";
+      let btn = document.createElement("button");
+      btn.innerHTML = "Back";
+      btn.onclick = function () {
+        if (page_number>1) {
+          current_page=page_number-1;
+          list_anuncios(data,current_page,limit);
+        }
+      };
+      document.getElementById("icon1").appendChild(btn);
+    }
+
+    function button_next(data,page_number,limit) {
+      if (page_number==1) {
+        document.getElementById("icon1").innerHTML="";
+      }
+      document.getElementById("icon2").innerHTML="";
+      let btn = document.createElement("button");
+      btn.innerHTML = "Next";
+      btn.onclick = function () {
+        if (page_number<=end) {
+          current_page=page_number+1;
+          list_anuncios(data,current_page,limit);
+        }
+      };
+      document.getElementById("icon2").appendChild(btn);
+    }
+
+    function list_anuncios(data, page_number, limit) {
+      document.getElementById("results").innerHTML="";
+
+      let total_number_pages = Math.ceil(data.resultados.length/limit);
+      end=total_number_pages;
+      let count = (page_number*limit)-limit;
+      let last = count+limit;
+      
+
+      for (let i = count; i < last; i++) {
+        if (i<data.resultados.length) {
+          document.getElementById("results").innerHTML += "<b>Tipo de alojamento: </b>" + data.resultados[i].tipo_alojamento +  "          ";
+          document.getElementById("results").innerHTML += "<b>Género: </b>" + data.resultados[i].genero + "<br>";
+          document.getElementById("results").innerHTML += "<b>Preço: </b>" + data.resultados[i].preco + " €" + "          ";
+          document.getElementById("results").innerHTML += "<b>Zona: </b>" + data.resultados[i].zona + "<br>";
+          document.getElementById("results").innerHTML += "<b>Anúncio </b>" + data.resultados[i].aid + "<br>";
+        }
+        if (i!=last-1 && i<data.resultados.length-1) {
+          document.getElementById("results").innerHTML += "<hr>"
+        }
+      }
+      if (page_number==end&&page_number==1) {
+        document.getElementById("icon1").innerHTML="";
+        document.getElementById("icon2").innerHTML="";
+      }
+      else if (page_number==end) {
+        button_back(data, page_number, pagination);
+      }
+      else if (page_number==1) {
+        button_next(data, page_number, pagination);
+      }
+      else{
+        button_back(data, page_number, pagination);
+        button_next(data, page_number, pagination);
+      } 
+    }
+
+    $(document).ready(function () {
+      $("form").on("submit", function(event) {
+        event.preventDefault();
+        var formValues= $(this).serialize();
+        var actionUrl = $(this).attr("action");
+
+        $.post(actionUrl, formValues, function (data){
+          current_page=1;
+          list_anuncios(data,current_page,pagination);   
+        });
+      });
+    });
+  </script>
+  </body>
+</html>
